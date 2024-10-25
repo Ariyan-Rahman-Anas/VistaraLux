@@ -1,3 +1,5 @@
+"use strict";
+
 import { AlignJustify, Heart, Moon, Search, ShoppingCart, SunMedium, UserRound, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

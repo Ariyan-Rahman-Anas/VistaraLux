@@ -26,12 +26,12 @@ export const userApi = createApi({
             }),
             invalidatesTags: ["users"]
         }),
-        signOut: builder.mutation({
+        signOut: builder.mutation<void, void>({
             query: () => ({
-                url: "/logout-user", 
-                method: "POST", 
+                url: "/logout-user",
+                method: "POST",
             }),
-            invalidatesTags:["users"]
+            invalidatesTags: ["users"]
         }),
         getAllUser: builder.query<UsersResponse, string> ({
             query: () => "/all-user",
