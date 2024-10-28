@@ -1,5 +1,3 @@
-"use strict";
-
 import { AlignJustify, Heart, Moon, Search, ShoppingCart, SunMedium, UserRound, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,9 +15,9 @@ export default function Navbar() {
     const navItems = [
         { title: "Home", route: "/" },
         { title: "Products", route: "/products" },
-        { title: "Blogs", route: "/blogs" },
-        { title: "Gossip", route: "/gossip" },
-        { title: "Shop", route: "/shop" },
+        // { title: "Blogs", route: "/blogs" },
+        { title: "About Us", route: "/about" },
+        { title: "Support", route: "/support" },
     ];
 
     const [drawer, setDrawer] = useState(false);

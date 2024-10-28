@@ -69,9 +69,10 @@ const ProductsTable = () => {
     // Transform the products data from API into the required format
     const fullData: DataType[] = useMemo(() => {
         if (!data?.products) return [];
+        console.log("try", data.products)
 
         return data.products.map(product => ({
-            photo: <img src={product.photo} alt={product.name} className='table-img' />,
+            photo: <img src={product.photos[0].url} alt={product.name} className='table-img border border-myBlue ' />,
             name: product.name,
             category: product.category,
             price: product.price,
@@ -101,7 +102,7 @@ const ProductsTable = () => {
                         data={fullData}
                         containerClassName="my-table-container"
                         heading="Products"
-                        showPagination={true}
+                        showPagination={data?.products?.length <= 6 ? false : true}
                         isLoading={isLoading}
                     />
                 </> : <EmptyMessage

@@ -47,7 +47,7 @@ html {
     @apply h-16 w-16 object-contain rounded-md
 }
 .primary-btn{
-    @apply text-lg font-medium py-1.5 px-4 border-2 border-myBlue   outline-none rounded-md cursor-pointer text-white bg-myBlue hover:opacity-75 duration-500
+    @apply text-lg font-medium py-2 px-4 border-none outline-none rounded-md cursor-pointer text-white bg-myBlue hover:opacity-75 duration-500
 }
 .primary-btn:disabled{
     @apply bg-blue-200 cursor-not-allowed
@@ -59,7 +59,7 @@ html {
     @apply bg-blue-200 cursor-not-allowed
 }
 .danger-btn{
-    @apply text-lg font-medium py-1.5 px-4 border-none outline-none rounded-md cursor-pointer text-white bg-myRed hover:opacity-70 duration-500
+    @apply text-lg font-medium py-2 px-4 border-none outline-none rounded-md cursor-pointer text-white bg-myRed hover:opacity-70 duration-500
 }
 .danger-btn:disabled{
     @apply bg-blue-200 cursor-not-allowed

@@ -52,7 +52,7 @@ const Footer = () => {
 
           <div>
             <p className="text-gray-400">Any queries? Feel free to email us:</p>
-            <a href="mailto:mohammadariyanrahmananas@gmail.com" className="text-lg font-medium hover:text-myRed duration-300 ">dev.m.ar.anas@gmail.com</a>
+            <a href="mailto:dev.m.ar.anas@gmail.com" className="text-lg font-medium hover:text-myRed duration-300 ">dev.m.ar.anas@gmail.com</a>
           </div>
         </div>
 

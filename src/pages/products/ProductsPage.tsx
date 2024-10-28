@@ -39,6 +39,7 @@ const ProductsPage = () => {
     const isNextPage = page < searchData?.totalPages;
     console.log("isNextPage", isNextPage)
     console.log("searchData?.totalPages.length;", searchData?.totalPages)
+    console.log("searchData && searchData.totalPages", searchData?.totalPages)
 
 
     const handleMinPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -144,27 +145,32 @@ const ProductsPage = () => {
                 </div>
 
                 <div>
-                    {searchData && searchData.totalPages && (
-                        <article className="flex items-center justify-center gap-4">
-                            <button
-                                disabled={!isPrevPage}
-                                onClick={() => setPage((prev) => prev - 1)}
-                                className="primary-btn"
-                            >
-                                Prev
-                            </button>
-                            <span>
-                                {page} of {searchData.totalPages}
-                            </span>
-                            <button
-                                disabled={!isNextPage}
-                                onClick={() => setPage((prev) => prev + 1)}
-                                className="primary-btn"
-                            >
-                                Next
-                            </button>
-                        </article>
-                    )}
+                    {
+                        searchData && searchData.totalPages > 1 && <>
+                            {searchData && searchData.totalPages && (
+                                <article className="flex items-center justify-center gap-4">
+                                    <button
+                                        disabled={!isPrevPage}
+                                        onClick={() => setPage((prev) => prev - 1)}
+                                        className="primary-btn"
+                                    >
+                                        Prev
+                                    </button>
+                                    <span>
+                                        {page} of {searchData.totalPages}
+                                    </span>
+                                    <button
+                                        disabled={!isNextPage}
+                                        onClick={() => setPage((prev) => prev + 1)}
+                                        className="primary-btn"
+                                    >
+                                        Next
+                                    </button>
+                                </article>
+                            )}
+                        </>
+                    }
+                    
                 </div>
             </main>
         </div>

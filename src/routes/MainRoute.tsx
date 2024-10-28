@@ -13,6 +13,8 @@ import NotFoundPage from './../pages/NotFoundPage';
 // Lazy load components
 const App = lazy(() => import("./../App"));
 const HomePage = lazy(() => import("./../pages/home/HomePage"));
+const AboutUsPage = lazy(() => import("./../pages/about/AboutUsPage"));
+const SupportPage = lazy(() => import("./../pages/support/SupportPage"));
 const ProductsPage = lazy(() => import("./../pages/products/ProductsPage"));
 const ProductDetails = lazy(() => import("./../pages/productDetails/ProductDetails"));
 const SignInPage = lazy(() => import("./../pages/auth/signIn/SignInPage"));
@@ -58,6 +60,8 @@ const MainRoute = createBrowserRouter([
         errorElement: <NotFoundPage />,
         children: [
             { path: "/", element: <HomePage /> },
+            { path: "/about", element: <AboutUsPage /> },
+            { path: "/support", element: <SupportPage /> },
             { path: "/products", element: <ProductsPage /> },
             { path: "/products/:id", element: <ProductDetails /> },
             {

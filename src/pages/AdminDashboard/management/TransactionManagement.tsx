@@ -96,7 +96,7 @@ const TransactionManagement = () => {
   )
 }
 
-const TransactionProductItem = ({ name, photo, price, quantity }: OrderItemType) => (
+const TransactionProductItem = ({ name, photo, price, quantity }:   OrderItemType) => (
   <div className="flex items-center justify-between">
     <div className="flex items-center gap-1 border- w-fit">
       <div className="w-[25%] ">

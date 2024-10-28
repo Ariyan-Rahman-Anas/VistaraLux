@@ -25,11 +25,12 @@
 
 {
   "compilerOptions": {
+    "skipLibCheck": true,
+    "noEmitOnError": false,
     "target": "ES6",
     "module": "ESNext",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "jsx": "react",

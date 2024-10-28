@@ -8,7 +8,10 @@ import { toast } from 'sonner';
 interface Product {
     _id: string;
     name: string;
-    photo: string;
+    photos: {
+        url: string
+        public_id: string
+    }[]
     price: number;
     quantity: number;
     productID: string;
@@ -21,7 +24,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ isLoading, product }) => {
-    const { _id, name, price, photo } = product || {};
+    const { _id, name, price, brand, photos } = product || {};
 
     const dispatch = useDispatch();
     const activeItemsInCart = useSelector(getActiveItemsInCart); // Selector to get the cart items
@@ -34,11 +37,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ isLoading, product }) => {
             _id: product._id,
             name: product.name,
             price: product.price,
-            photo: product.photo,
-            quantity: 1, // initial quantity is 1 when added to the cart
-            subtotal: product.price * 1, // subtotal is price * quantity
-            productId: product._id, // assuming this is the same as _id
-            stock: product.stock // carry over the stock to ensure we don't over-purchase
+            photo: product.photos[0].url,
+            quantity: 1, 
+            subtotal: product.price * 1, 
+            productId: product._id, 
+            stock: product.stock 
         };
 
         if (cartItem.stock <= 0) {
@@ -70,14 +73,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ isLoading, product }) => {
                 <div>
                     {/* Product Image */}
                     <img
-                        src={photo}
+                            src={photos[0]?.url}
                         alt={name}
-                        className="h-40 w-full object-cover rounded-lg mb-4"
+                        className="h-full w-full object-cover rounded-lg mb-4"
                     />
                     {/* Product Name */}
-                    <h2 className="text-lg font-semibold mb-2">{name}</h2>
-                    {/* Product Price */}
-                    <p className="text-xl font-semibold text-blue-500">${price}</p>
+                    <h2 className="text-base font-semibold mb-2">{name}</h2>
+                        {/* Product Price */}
+                        <div className='flex items-center justify-between'>
+                            <p className="text-base font-semibold text-gray-600 ">{brand}</p>
+                            <p className="text-base font-semibold text-blue-500">${price}</p>
+                        </div>
                 </div>
             )}
 
@@ -95,8 +101,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ isLoading, product }) => {
                         />
                     ) : (
                         <ShoppingCart
-                            color="blue"
-                            fill="blue"
+                            color="red"
+                                fill="red"
                             onClick={() => addRemoveToCartHandler(product)}
                             className="cursor-pointer"
                         />

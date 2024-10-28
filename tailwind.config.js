@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // myBlue: "blue",
+        primary: "#5ca8fc",
         myBlue: "#0866ff",
         myRed: "red",
         customGreen: "hsl(120, 60%, 70%)",

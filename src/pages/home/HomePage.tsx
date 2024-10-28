@@ -2,6 +2,7 @@ import HeroSection from "./HeroSection"
 import PopularCategories from "./PopularCategories"
 import LatestProducts from "./LatestProducts"
 import Categories from "./Categories"
+import SimilarProducts from "../../components/SimilarProducts"
 
 const HomePage = () => {
 
@@ -13,6 +14,8 @@ const HomePage = () => {
       <Categories />
 
       <LatestProducts />
+
+      <SimilarProducts />
 
     </div>
   )

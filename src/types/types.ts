@@ -13,9 +13,13 @@ export type Product = {
     _id: string
     name: string
     category: string
+    brand:string
     price: number
     stock: number
-    photo:string
+    photos: {
+        url: string
+        public_id:string
+    }[]
 }
 
 export type OrderItemType = {
