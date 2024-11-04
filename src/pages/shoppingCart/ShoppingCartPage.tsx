@@ -23,7 +23,7 @@ const ShoppingCartPage = () => {
   const [coupon, setCoupon] = useState<string>("");
   const [isDiscounted, setIsDiscounted] = useState<boolean>(false);
 
-  const { cartItems, total, tax, shippingCharge } = useSelector((state: { cart: any }) => state.cart);
+  const { cartItems, total, tax, shippingCharge } = useSelector((state: { cart }) => state.cart);
 
   const itemIncrementHandler = (itemId: string) => {
     const item = cartItems.find((item) => item._id === itemId);
@@ -45,7 +45,14 @@ const ShoppingCartPage = () => {
   };
 
   const columns: Column<DataType>[] = [
-    { Header: "Photo", accessor: "photo" },
+    {
+      Header: "Photo", accessor: "photo",
+      Cell: ({ row }) => (
+        <div className="w-16 ">
+          <img src={row.values.photo} alt={row.values?.name} loading='lazy' />
+        </div>
+      )
+     },
     { Header: "Name", accessor: "name" },
     { Header: "Price", accessor: "price" },
     {
@@ -102,7 +109,11 @@ const ShoppingCartPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
             <main className="col-span-5 section-grant p-4 ">
               <h1 className="heading">Cart Items</h1>
-              <ModularTableWithSkeleton columns={columns} data={cartItems} containerClassName="my-table-container" heading="Shopping Cart" showPagination={true} />
+              <ModularTableWithSkeleton
+                columns={columns}
+                data={cartItems}
+                containerClassName="my-table-container"
+                showPagination={true} />
             </main>
 
             <aside className="col-span-2 md:col-span-2 section-grant p-4 w-full">

@@ -19,9 +19,8 @@ const Footer = () => {
     {title:"Home", link:"/"},
     {title:"Sign In", link:"/sign-in"},
     {title:"Shop Now", link:"/products"},
-    {title:"Shop Now", link:"/products"},
     {title:"About Us", link:"/about"},
-    {title:"FAQ", link:"/faq"},
+    {title:"FAQ", link:"/"},
     {title:"Support", link:"/support"},
   ]
 
@@ -108,7 +107,7 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row items-center justify-center gap-3 pb-2 ">
         <p>All rights reserved by VistaraLux ©{fullYear} </p> 
         <p className="hidden md:block">|</p>
-      <p>Developed by <Link to={"/"} className="hover:text-myRed duration-300" >Ariyan Rahman Anas</Link> </p>
+        <p>Developed by <Link to={"https://ariyanrahmananas.vercel.app"} target="_blank" className="hover:text-myRed duration-300" >Ariyan Rahman Anas</Link> </p>
       </div>   
     </footer>
   )

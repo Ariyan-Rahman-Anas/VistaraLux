@@ -8,6 +8,7 @@ import { toast } from "sonner";
 interface ProductFormData {
     name: string;
     category: string;
+    brand: string;
     price: number;
     stock: number;
     description: string;
@@ -24,31 +25,45 @@ const ProductManagement = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const product = location?.state?.product;
-    const { _id, name, category, price, stock, description } = product || {};
+    const { _id, name, category, brand, price, stock, description } = product || {};
 
     const [updateProduct, { data, isSuccess, isLoading, error }] = useUpdateProductMutation();
 
-    const [photo, setPhoto] = useState<File | null>(null);
-
-    // Photo handler
-    const photoHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        const file: File | undefined = e.target.files?.[0];
-        if (file) {
-            setPhoto(file);
+    const [photos, setPhotos] = useState<File[]>([]);
+    const validateFiles = (files: FileList) => {
+        const MAX_SIZE_MB = 10;
+        for (const file of files) {
+            if (file.size > MAX_SIZE_MB * 1024 * 1024) {
+                toast.error(`File ${file.name} exceeds the maximum size of ${MAX_SIZE_MB} MB`);
+                return false;
+            }
         }
+        return true;
+    };
+
+    const photoHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        if (!validateFiles(files)) return;
+
+        const fileArray = Array.from(files);
+        if (fileArray.length < 1 || fileArray.length > 10) {
+            toast.error("Please upload between 1 and 10 photos.");
+            return;
+        }
+        setPhotos(fileArray);
     };
 
     const productUpdateHandler: SubmitHandler<ProductFormData> = async (formData) => {
         const formDataObj = new FormData();
         formDataObj.append("name", formData.name);
         formDataObj.append("category", formData.category);
+        formDataObj.append("brand", formData.brand);
         formDataObj.append("price", formData.price.toString());
         formDataObj.append("stock", formData.stock.toString());
         formDataObj.append("description", formData.description);
 
-        if (photo) {
-            formDataObj.append("photo", photo);
-        }
+        // Append each file individually
+        photos.forEach((photo) => formDataObj.append("photos", photo));
 
         try {
             await updateProduct({ id: _id, formData: formDataObj });
@@ -66,31 +81,16 @@ const ProductManagement = () => {
                 message: `Something went wrong: ${error?.data?.message}`,
             });
         }
-
         if (isSuccess) {
             toast.success(data?.message, { duration: 3000 });
             navigate("/admin/products");
         }
     }, [error, setError, isSuccess, data, navigate]);
 
+
     return (
         <div className="dashboard-container p-4 md:pl-0">
-            {/* <main className="grid grid-cols-1 md:grid-cols-2 flex-col md:flex-row items-start justify-center gap-6"> */}
-            {/* <section className="section-grant p-4">
-                    <h2 className="heading">Product Preview </h2>
-                    <p>{name}</p>
-                    <span>
-                        Stock:{" "}
-                        {stock > 0 ? (
-                            <span className="green">{stock} items available </span>
-                        ) : (
-                            <span className="red">not available right now</span>
-                        )}
-                    </span>
-                    <p>Price: {price}$</p>
-                </section> */}
             <h2 className="heading">Update Product</h2>
-
             <div className="section-grant p-4">
                 <form
                     onSubmit={handleSubmit(productUpdateHandler)}
@@ -135,6 +135,31 @@ const ProductManagement = () => {
                         </div>
                     </div>
 
+
+                    <div className="flex flex-col md:flex-row gap-4">
+                        <div className="flex flex-col gap-2 w-full">
+                            <label htmlFor="brand">Brand</label>
+                            <input
+                                type="text"
+                                defaultValue={brand}
+                                placeholder="Brand"
+                                className="text-input"
+                                {...register("brand", { required: "Brand is required" })}
+                            />
+                            {errors.brand && <span className="text-myRed font-semibold">{errors.brand.message}</span>}
+                        </div>
+                        <div className="flex flex-col gap-2 w-full">
+                            <label htmlFor="product-photo">Photo</label>
+                            <input
+                                type="file"
+                                multiple
+                                accept="image/*"
+                                onChange={photoHandler}
+                                className="text-input"
+                            />
+                        </div>
+                    </div>
+
                     <div className="flex flex-col md:flex-row gap-4">
                         <div className="flex flex-col gap-2 w-full">
                             <label htmlFor="product-price">Price</label>
@@ -175,16 +200,6 @@ const ProductManagement = () => {
                     </div>
 
                     <div className="flex flex-col gap-2 w-full">
-                        <label htmlFor="product-photo">Photo</label>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={photoHandler}
-                            className="text-input"
-                        />
-                    </div>
-
-                    <div className="flex flex-col gap-2 w-full">
                         <label htmlFor="description">Description</label>
                         <textarea
                             rows={2}
@@ -216,9 +231,7 @@ const ProductManagement = () => {
                     </button>
                 </form>
             </div>
-            {/* </main> */}
         </div>
     );
 };
-
 export default ProductManagement;

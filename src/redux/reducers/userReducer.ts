@@ -20,9 +20,13 @@ export const userSlice = createSlice({
             state.isAuthenticated = false;
             state.user = null; 
         },
+        updateUserProfile: (state, action: PayloadAction<User>) => {
+           state.user = action.payload ;
+            
+        },
     },
 });
-export const { userExist, userNotExist } = userSlice.actions;
+export const { userExist, userNotExist, updateUserProfile } = userSlice.actions;
 export default userSlice.reducer;
 
 

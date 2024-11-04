@@ -1,11 +1,10 @@
-import { Bell, Search, TrendingDown, TrendingUp } from "lucide-react"
+import { Bell, Search, TrendingDown, TrendingUp, UserRound } from "lucide-react"
 import { BarChart, DoughnutChart } from "../../../components/adminDashboard/Charts"
 import maleFemaleIcon from "./../../../assets/maleFemaleIcon.png"
 import DashboardTable from "../../../components/adminDashboard/DashboardTable"
 import { useStatsQuery } from "../../../redux/api/dashboardApi"
-import { useEffect, useRef } from "react"
-import { toast } from "sonner"
 import { SkeletonWidgetItem } from "../../../components/adminDashboard/adminDashboardSkeletons/SkeletonWidgetItem "
+import { Link } from "react-router-dom"
 
 function AdminDashboard() {
 
@@ -23,9 +22,12 @@ function AdminDashboard() {
                     </div>
                     <div className="flex items-center gap-4 ">
                         <Bell />
-                        <div className="h-8 w-8">
+                        <Link to={"/user/profile"}>
+                            <UserRound />
+                        </Link>
+                        {/* <div className="h-8 w-8">
                             <img src="https://icon-library.com/images/account-icon-png/account-icon-png-10.jpg" alt="user icon" className="h-full w-full" />
-                        </div>
+                        </div> */}
                     </div>
                 </section>
                 <hr className="hr" />
@@ -68,8 +70,8 @@ function AdminDashboard() {
                     </div>
                 </section>
 
-                <section id="transaction-section" className="transaction-container my-4 grid grid-cols-1 md:grid-cols-10 gap-4">
-                    <div className="gender-chart p-2 relative col-span-1 md:col-span-4 section-grant">
+                <section id="transaction-section" className="my-4 gap-4 flex overflow-auto ">
+                    <div className="gender-chart p-2 relative section-grant flex-1 ">
                         <h2 className="heading">Gender Ratio</h2>
                         <DoughnutChart
                             labels={["Female", "Male"]}
@@ -79,7 +81,7 @@ function AdminDashboard() {
                         />
                         <img src={maleFemaleIcon} alt="male female icon" className="absolute top-[50%] left-[45%] translate-[-50%, 50%] h-[2.5rem] w-[2.5rem] " />
                     </div>
-                    <div className="table col-span-1 md:col-span-6 section-grant px-4 ">
+                    <div className="table section-grant px-4 flex-1 ">
                         <DashboardTable />
                     </div>
                 </section>
@@ -142,7 +144,7 @@ interface CategoryItem {
     heading: string
 }
 const CategoryItem = ({ color, value, heading }: CategoryItem) =>
-    <div className="category-item flex items-center justify-between gap-4 my-6 ">
+    <div className="category-item flex flex-col lg:flex-row items-center justify-between gap-1 lg:gap-4 my-3 lg:my-6 ">
         <h5 className="text-gray-700 text-sm capitalize ">{heading}</h5>
         <div className="w-[6rem] bg-gray-300 rounded-md h-[.5rem] flex-none ">
             <div style={{

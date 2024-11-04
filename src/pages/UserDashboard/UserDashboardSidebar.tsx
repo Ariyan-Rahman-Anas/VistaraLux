@@ -1,4 +1,7 @@
-import { LayoutDashboard, ShoppingBasket } from "lucide-react"
+import gUser from "./../../assets/images/profile/g.svg"
+import bUser from "./../../assets/images/profile/b.svg"
+import nullUser from "./../../assets/images/profile/null.svg"
+import { CheckCircle2Icon, CheckCircleIcon, LayoutDashboard, ShoppingBasket } from "lucide-react"
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom"
 import { selectAuthenticatedUser } from "../../redux/reducers/userReducer";
@@ -36,14 +39,19 @@ const UserDashboardSidebar = () => {
               className="space-y-5"
           >
               <div className="logo-closer">
-                  <Link to={"/"}>Logo</Link>
-                  <div className="border mt-8 text-center p-4 ">
-                      <div>
-                          <img src={photo} alt={name} />
+                  <div className="text-center underline">
+                      <Link to="/" className="text-2xl italic font-semibold text-myBlue dark:text-white">
+                          VistaraLux
+                      </Link>
+                  </div>
+                  <div className="mt-8 text-center p-4 ">
+                      <div className="h-16 w-16 mx-auto ">
+                          <img src={photo?.[0]?.url ? photo?.[0]?.url : gender === "male" ? bUser : gender === "female" ? gUser : nullUser } alt={name}  loading="lazy" className="w-full  h-full rounded-full" />
                       </div>
-                      <h1>{name} <span>{gender} </span></h1>
-                      <p>{email} </p>
-
+                      <div className="flex items-center gap-1 ">
+                          <h1>{name}</h1>
+                          <CheckCircle2Icon size={16}  className="bg-myBlue rounded-full text-white" />
+                      </div>
                   </div>
               </div>
               {/* dashboard */}

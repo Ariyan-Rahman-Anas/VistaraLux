@@ -9,8 +9,6 @@ const TransactionManagement = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const order = location?.state?.order
-  console.log("order data is:", order)
-  console.log("order id is:", order._id)
 
   const billingInfo = order.billingInfo.userId
   const shippingInfo = order.shippingInfo

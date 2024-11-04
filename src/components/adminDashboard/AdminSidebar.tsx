@@ -86,15 +86,22 @@ function AdminSidebar() {
             <aside
                 className="space-y-5"
             >
-                <div className="logo-closer">
+                {/* <div className="logocloser">
                     <Link to={"/"}>Logo</Link>
-                    {/* {phoneActive &&
+                    {phoneActive &&
                         <X
                             color="white"
                             id="hamburgerMenuCloser"
                             onClick={() => setShowModal(false)}
-                        />} */}
+                        />}
+                </div> */}
+
+                <div className="text-center underline">
+                    <Link to="/" className="text-2xl italic font-semibold text-myBlue dark:text-white">
+                        VistaraLux
+                    </Link>
                 </div>
+
                 {/* dashboard */}
                 <div>
                     <h5 className="subHeading">Dashboard</h5>

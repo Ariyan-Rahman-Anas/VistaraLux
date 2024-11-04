@@ -19,9 +19,12 @@ const ProductsPage = lazy(() => import("./../pages/products/ProductsPage"));
 const ProductDetails = lazy(() => import("./../pages/productDetails/ProductDetails"));
 const SignInPage = lazy(() => import("./../pages/auth/signIn/SignInPage"));
 const SignUpPage = lazy(() => import("./../pages/auth/signUp/SignUpPage"));
+const WishlistPage = lazy(() => import("./../pages/wishlist/WishlistPage"));
 const ShoppingCartPage = lazy(() => import("./../pages/shoppingCart/ShoppingCartPage"));
 const CheckOutPage = lazy(() => import("../pages/checkOut/CheckOutPage"));
 const MakePayment = lazy(() => import("../pages/checkOut/MakePayment"));
+const PaymentSuccessfulPage = lazy(() => import("../pages/paymentStatus/PaymentSuccessfulPage"));
+const PaymentFailedPage = lazy(() => import("../pages/paymentStatus/PaymentFailedPage"));
 // const OrdersPage = lazy(() => import("../pages/UserDashboard/orders/UserOrdersPage"));
 
 // Admin dashboard components
@@ -44,6 +47,7 @@ const Stopwatch = lazy(() => import("./../pages/AdminDashboard/apps/Stopwatch"))
 // User dashboard components
 const UserDashboardLayout = lazy(() => import("./../pages/UserDashboard/UserDashboardLayout"));
 const UserProfile = lazy(() => import("./../pages/UserDashboard/profile/UserProfile"));
+const EditProfile = lazy(() => import("./../pages/UserDashboard/profile/EditProfile"));
 const UserDashboard = lazy(() => import("./../pages/UserDashboard/userDashboard/UserDashboard"));
 const UserOrdersPage = lazy(() => import("./../pages/UserDashboard/orders/UserOrdersPage"));
 const OrderDetails = lazy(() => import("./../pages/UserDashboard/orders/OrderDetails"));
@@ -81,6 +85,12 @@ const MainRoute = createBrowserRouter([
                 ),
             },
             {
+                path: "/wishlist/:id",
+                element: <ProtectedRoute>
+                    <WishlistPage />
+                </ProtectedRoute>
+            },
+            {
                 path: "/shopping-cart",
                 element: <ProtectedRoute>
                     <ShoppingCartPage />
@@ -92,6 +102,8 @@ const MainRoute = createBrowserRouter([
                 </ProtectedRoute>
             },
             { path: "/make-payment", element: <MakePayment /> },
+            { path: "/payment-success", element: <PaymentSuccessfulPage /> },
+            { path: "/payment-failed", element: <PaymentFailedPage /> },
         ],
     },
     {
@@ -131,6 +143,7 @@ const MainRoute = createBrowserRouter([
         ),
         children: [
             { path: "profile", element: <UserProfile /> },
+            { path: "profile/edit", element: <EditProfile /> },
             { path: "dashboard", element: <UserDashboard /> },
             { path: "orders", element: <UserOrdersPage /> },
             { path: "orders/:id", element: <OrderDetails /> },

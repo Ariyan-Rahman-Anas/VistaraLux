@@ -42,10 +42,16 @@ const SupportPage = () => {
   return (
     <div className="w-[95%] md:w-[90%] mx-auto space-y-20 ">
       <section className="py-10 flex flex-col md:flex-row items-start justify-between gap-6 ">
-        <div className="flex-1">
+        <div
+          data-aos="fade-left"
+          data-aos-duration="1000"
+          className="flex-1">
           <img src={support} alt="about us image" className="w-full h-full rounded-r-md " />
         </div>
-        <div className="flex-1 section-grant p-4 ">
+        <div
+          data-aos="fade-right"
+          data-aos-duration="1000"
+          className="flex-1 section-grant p-4 ">
           <div className="flex items-center justify-end ">
             <h1 className="font-semibold text-xl bg-myBlue text-white p-3 rounded-tr-xl " >Customer Support</h1>
           </div>
@@ -69,23 +75,35 @@ const SupportPage = () => {
         </div>
       </section>
 
-      <section>
+      <section
+        data-aos="zoom-in-up"
+        data-aos-duration="1000"
+      >
         <h1 className="heading" >What can we help you with today?</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ">
           {
-            todaySupports?.map((support, index) => <div key={index} className="shadow hover:shadow-md rounded-md p-4 flex items-center gap-4 hover:bg-gray-200 duration-300 ">
+            todaySupports?.map((support, index) => <div key={index}
+              data-aos="zoom-in-up"
+              data-aos-duration="1000"
+              className="shadow hover:shadow-md rounded-md p-4 flex items-center gap-4 hover:bg-gray-200 duration-300 ">
               <p>{support.icon} </p>
-              <p className="text-xl font-semibold">{support.title} </p>
+              <p className="font-semibold">{support.title} </p>
             </div> )
           }
         </div>
       </section>
 
       <section className="mt-16 p-4 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="border2 flex-1 ">
+        <div
+          data-aos="fade-right"
+          data-aos-duration="1000"
+          className="flex-1 ">
           <img src={didNotFindAns} alt="email subscription alarm" className="w-full h-full" />
         </div>
-        <div className="flex-1 space-y-6">
+        <div
+          data-aos="fade-left"
+          data-aos-duration="1000"
+          className="flex-1 space-y-6">
           <h1 className="font-semibold text-2xl ">Did not find your answer?</h1>
           <div className="section-grant p-4 group">
             <div className="flex items-center  gap-2">

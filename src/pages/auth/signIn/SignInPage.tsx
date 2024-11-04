@@ -33,7 +33,6 @@ export default function SignInPage() {
 
     useEffect(() => {
         if (error?.data) {
-            console.log("err is ", error)
             toast.error(
                 error?.data?.message,
                 {
@@ -48,8 +47,6 @@ export default function SignInPage() {
 
         if (isSuccess) {
             dispatch(userExist(data?.user));
-            console.log("isSuccess ", isSuccess)
-            console.log("dataaaaaaa", data)
             toast.success(data?.message, { duration: 3000 });
             navigate("/");
         }
@@ -57,11 +54,15 @@ export default function SignInPage() {
 
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-l from-blue-600 to-slate-600 p-2 md:px-16"   >
+        <div  className="min-h-screen flex items-center justify-center bg-gradient-to-l from-blue-600 to-slate-600 p-2 md:px-16"   >
 
-            <div className="grid grid-cols-1 md:grid-cols-5 ">
+            <div
+                className="grid grid-cols-1 md:grid-cols-5 ">
                 {/* Left Section - Welcome Text */}
-                <div className="col-span-5 md:col-span-3 p-3 md:p-8 space-y-8 text-white md:pl-12 w-full ">
+                <div
+                    data-aos="fade-right"
+                    data-aos-duration="1000"
+                    className="col-span-5 md:col-span-3 p-3 md:p-8 space-y-8 text-white md:pl-12 w-full ">
                     <div>
                         <Link to={"/"} className="text-white animate-pulse font-semibold text-7xl underline underline-offset-4 italic ">VistaraLux</Link>
                     </div>
@@ -79,7 +80,10 @@ export default function SignInPage() {
                 </div>
 
                 {/* Right Section - Login Form */}
-                <div className="col-span-5 md:col-span-2 bg-white bg-opacity-20 backdrop-blur-md p-5 md:p-8 rounded-3xl shadow-lg w-full ">
+                <div
+                    data-aos="fade-left"
+                    data-aos-duration="1000"
+                    className="col-span-5 md:col-span-2 bg-white bg-opacity-20 backdrop-blur-md p-5 md:p-8 rounded-3xl shadow-lg w-full ">
                     <h1 className="text-3xl font-bold text-white mb-6 text-center">Login</h1>
                     <form
                         onSubmit={handleSubmit(singInHandler)}

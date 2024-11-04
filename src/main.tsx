@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
-        <div className='min-h-screen bg-gray-100 max-w-[1920px] mx-auto pb8 relative '>
+        <div className='min-h-screen dark:text-white bg-gray-100 dark:bg-gray-900 max-w-[1920px] mx-auto pb8 relative '>
           <RouterProvider router={MainRoute} />
           <Toaster richColors position="top-center" />
         </div>

@@ -10,7 +10,7 @@ import EmptyMessage from '../EmptyMessage';
 interface DataType {
     photo: ReactElement;
     name: string;
-    category:string
+    category: string
     price: number;
     stock: number;
     action: ReactElement;
@@ -69,10 +69,11 @@ const ProductsTable = () => {
     // Transform the products data from API into the required format
     const fullData: DataType[] = useMemo(() => {
         if (!data?.products) return [];
-        console.log("try", data.products)
 
         return data.products.map(product => ({
-            photo: <img src={product.photos[0].url} alt={product.name} className='table-img border border-myBlue ' />,
+            photo: <div className='w-16'>
+                <img src={product?.photos[0]?.url} alt={product?.name} loading='lazy' />
+            </div>,
             name: product.name,
             category: product.category,
             price: product.price,
@@ -90,28 +91,43 @@ const ProductsTable = () => {
     }, [data]);
 
     return (
-        <>
-            {
-                data?.products.length >= 1 ? <>
-                    <div className='flex items-center justify-between '>
-                        <h1 className='heading'>Products </h1>
-                        <h1>Total {data?.products.length} products</h1>
-                    </div>
-                    <ModularTableWithSkeleton
-                        columns={columns}
-                        data={fullData}
-                        containerClassName="my-table-container"
-                        heading="Products"
-                        showPagination={data?.products?.length <= 6 ? false : true}
-                        isLoading={isLoading}
-                    />
-                </> : <EmptyMessage
-                        btnText={"Add Products"}
-                        redirectTo={"/admin/products/new-product"}
-                        message={productsQueryError?.data.message}
-                    />
-            }
-        </>
+        // <>
+        //     {
+        //         data?.products.length >= 1 ? <>
+        //             <div className='flex items-center justify-between '>
+        //                 <h1 className='heading'>Products </h1>
+        //                 <h1>Total {data?.products.length} products</h1>
+        //             </div>
+        //             <ModularTableWithSkeleton
+        //                 columns={columns}
+        //                 data={fullData}
+        //                 containerClassName="my-table-container"
+        //                 heading="Products"
+        //                 showPagination={data?.products?.length <= 6 ? false : true}
+        //                 isLoading={isLoading}
+        //             />
+        //         </> : <EmptyMessage
+        //                 btnText={"Add Products"}
+        //                 redirectTo={"/admin/products/new-product"}
+        //                 message={productsQueryError?.data?.message}
+        //             />
+        //     }
+        // </>
+
+        <div className='overflow-auto'>
+            <div className='flex items-center justify-between '>
+                <h1 className='heading'>Products </h1>
+                <h1>Total {data?.products.length} products</h1>
+            </div>
+            <ModularTableWithSkeleton
+                columns={columns}
+                data={fullData}
+                containerClassName="my-table-container"
+                heading="Products"
+                showPagination={data?.products?.length <= 6 ? false : true}
+                isLoading={isLoading}
+            />
+        </div>
     );
 };
 

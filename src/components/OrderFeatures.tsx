@@ -26,7 +26,10 @@ const OrderFeatures = () => {
     ]
 
     return (
-        <div className="w-full md:w-[90%] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <div
+            data-aos="fade-down"
+            data-aos-duration="1000"
+            className="w-full md:w-[90%] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
             {
                 features?.map((feature, index) => <div key={index} className="section-grant p-4 w-full ">
                     <div className="flex items-center gap-2">

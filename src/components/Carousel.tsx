@@ -10,11 +10,11 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % images?.length);
         }, 3000); // Change slide every 1.5 seconds
 
         return () => clearInterval(interval);
-    }, [images.length]);
+    }, [images?.length]);
 
     const goToNextSlide = () => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -37,7 +37,7 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
                 }}
                 ref={carouselRef}
             >
-                {images.map((image, index) => (
+                {images?.map((image, index) => (
                     <div key={index} className="flex-shrink-0 w-full h-full h64">
                         <img src={image} alt={`Slide ${index}`} className="w-full h-full object-cover rounded-md" />
                     </div>
@@ -62,7 +62,7 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
 
             {/* Indicators */}
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                {images.map((_, index) => (
+                {images?.map((_, index) => (
                     <button
                         key={index}
                         className={`w-3 h-3 rounded-full ${currentIndex === index ? 'bg-myBlue' : 'bg-gray-300'}`}

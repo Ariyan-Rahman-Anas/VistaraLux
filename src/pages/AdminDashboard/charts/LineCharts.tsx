@@ -20,7 +20,6 @@ const LineCharts = () => {
 
   const { data, isLoading } = useLineChartsQuery("")
   const lineChartsData = data?.lineCharts
-  console.log("lineChartsData", lineChartsData)
 
   return (
     <div className="dashboard-container">

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { toast } from 'sonner';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCreateNewOrderMutation } from '../../redux/api/OrderApi';
 import { useDispatch } from 'react-redux';
 import { resetCart } from '../../redux/reducers/cartReducer';
@@ -19,6 +19,7 @@ const CheckoutForm = () => {
 
     const location = useLocation()
     const dispatch = useDispatch()
+    const navigate = useNavigate();
 
 
     const billingInfo = location.state?.billingInfo
@@ -37,11 +38,12 @@ const CheckoutForm = () => {
         shippingInfo,
         tax,
         shippingCharge,
-        discount,
+        discount: discount.toFixed(0),
         subtotal,
         total,
         status
     }
+
 
     const [createNewOrder, {data, isSuccess, error }] = useCreateNewOrderMutation()
 
@@ -55,8 +57,8 @@ const CheckoutForm = () => {
         const { error, paymentIntent } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                // return_url: 'http://localhost:5173/make-payment',
-                return_url: window.location.origin,
+                return_url: "http://localhost:5173",
+                // return_url: window.location.origin + '/payment-success',
             },
             redirect:"if_required"
         });
@@ -65,6 +67,7 @@ const CheckoutForm = () => {
             setIsProcessing(false);
             setErrorMessage(error?.message);
             toast.error(`Payment failed: ${error.message}`);
+            navigate('/payment-failed', { state: { error: error.message } });
         } else if (paymentIntent && paymentIntent.status === 'succeeded') {
             setPaymentSucceeded(true);
             toast.success("Payment successful!");
@@ -74,10 +77,11 @@ const CheckoutForm = () => {
                 await createNewOrder(order); // Unwraps the promise to handle response directly
                 dispatch(resetCart())
                 toast.success("Order placed successfully!");
-
+                navigate('/payment-success', { state: { order } })
             } catch (err) {
                 console.error("Failed to create order:", err);
                 toast.error("Failed to create order");
+                navigate('/payment-failed', { state: { error: "Order creation failed" } })
             }
         }
 
@@ -179,34 +183,3 @@ const MakePayment = () => {
     );
 };
 export default MakePayment;
-
-
-
-
-
-
-
-// const handleSubmit = async (event) => {
-//     event.preventDefault();
-
-//     if (!stripe || !elements)  return;
-
-//     setIsProcessing(true);
-
-//     const { error, paymentIntent } = await stripe.confirmPayment({
-//         elements,
-//         confirmParams: {
-//             return_url: 'http://localhost:5173/products',
-//         },
-//     });
-
-//     if (error) {
-//         setErrorMessage(error.message);
-//         toast.error(`Payment failed: ${error.message}`);
-//     } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-//         setPaymentSucceeded(true);
-//         toast.success("Payment successful!");
-//     }
-
-//     setIsProcessing(false);
-// };

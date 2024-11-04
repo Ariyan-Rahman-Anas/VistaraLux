@@ -83,6 +83,7 @@ export type Order = {
     total: number
     status: string
     orderedItems: OrderItem[]
+    createdAt:string
 }
 
 type AuditAndAuditPercentages = {

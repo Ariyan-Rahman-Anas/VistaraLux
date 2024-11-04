@@ -8,7 +8,7 @@ export const userApi = createApi({
         baseUrl: `${import.meta.env.VITE_SERVER_URL}/user`, 
         credentials: "include",
     }),
-    tagTypes: ["users"],
+    tagTypes: ["user"],
     endpoints: (builder) => ({
         signUp: builder.mutation<MessageResponse, User>({
             query: (user) => ({
@@ -16,7 +16,7 @@ export const userApi = createApi({
                 method: "POST",
                 body: user,
             }),
-            invalidatesTags: ["users"]
+            invalidatesTags: ["user"]
         }),
         signIn: builder.mutation({
             query: (user) => ({
@@ -24,26 +24,34 @@ export const userApi = createApi({
                 method: "POST",
                 body: user,
             }),
-            invalidatesTags: ["users"]
+            invalidatesTags: ["user"]
         }),
         signOut: builder.mutation<void, void>({
             query: () => ({
                 url: "/logout-user",
                 method: "POST",
             }),
-            invalidatesTags: ["users"]
+            invalidatesTags: ["user"]
         }),
         getAllUser: builder.query<UsersResponse, string> ({
             query: () => "/all-user",
-            providesTags:["users"]
+            providesTags:["user"]
         }),
+        updateProfile: builder.mutation({
+            query: ({ id, formDataObj }) => ({
+                url: `/${id}`,
+                method: "PUT",
+                body: formDataObj
+            }),
+            invalidatesTags: ["user"]
+        }) ,
         deleteUser: builder.mutation({
             query: (id) => ({
                 url: `/${id}`,
                 method: "DELETE",
                 body: id
             }),
-            invalidatesTags: ["users"]
+            invalidatesTags: ["user"]
         })
     }),
 });
@@ -53,5 +61,6 @@ export const {
     useSignInMutation,
     useSignOutMutation,
     useGetAllUserQuery,
+    useUpdateProfileMutation,
     useDeleteUserMutation
 } = userApi;

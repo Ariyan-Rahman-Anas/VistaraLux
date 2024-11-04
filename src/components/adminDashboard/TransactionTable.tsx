@@ -52,6 +52,8 @@ const TransactionTable = () => {
 
     const { data: transactionData, isLoading, error: transactionsQueryError } = useAllOrdersQuery("")
 
+    console.log("transactionData", transactionData)
+
     const [deleteOrder, { data, isSuccess, error }] = useDeleteOrderMutation()
 
     const deleteHandler = async (id) => {

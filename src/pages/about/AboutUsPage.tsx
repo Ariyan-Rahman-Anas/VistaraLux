@@ -1,10 +1,8 @@
 import { CircleCheck } from "lucide-react"
 import whoWeAre from "./../../assets/images/whoWeAre.svg"
 import aboutBanner from "./../../assets/images/aboutBanner.svg"
-import emailSubs from "./../../assets/images/email-subs.svg"
-import { useSelector } from "react-redux"
-import { selectAuthenticatedUser } from "../../redux/reducers/userReducer"
 import SimilarProducts from "../../components/SimilarProducts"
+import NewsLetterSubscription from "../../components/NewsLetterSubscription"
 
 const AboutUsPage = () => {
 
@@ -59,12 +57,13 @@ const AboutUsPage = () => {
         }
     ]
 
-    const user = useSelector(selectAuthenticatedUser)
-
     return (
         <div>
             <section className="w-[95%] lg:w-[90%] mx-auto py-10 flex flex-col-reverse md:flex-row items-start justify-between gap-6 ">
-                <div className="flex-1 section-grant p-4 ">
+                <div
+                    data-aos="fade-right"
+                    data-aos-duration="1000"
+                    className="flex-1 section-grant p-4 ">
                     <h1 className="font-semibold text-xl bg-myBlue text-white w-fit p-3 rounded-tl-xl " >Who We Are</h1>
                     <p className="font-semibold mt-5 " ><span className=" text-xl font-semibold">✨ Welcome to Vistaralux </span><br /> – Your Ultimate Destination for Premium Shopping! ✨</p>
                     <p className="my-8" >Elevate your lifestyle with Vistaralux’s curated collection of quality essentials and luxury items. Exceptional value, effortless shopping—discover the best with us!</p>
@@ -85,16 +84,25 @@ const AboutUsPage = () => {
 
                 </div>
 
-                <div className="flex-1">
+                <div
+                    data-aos="fade-left"
+                    data-aos-duration="1000"
+                    className="flex-1">
                     <img src={whoWeAre} alt="about us image" className="w-full h-full rounded-r-md " />
                 </div>
             </section>
 
-            <section className="w-[95%] md:w-[90%] mx-auto my-16 ">
+            <section
+                data-aos="zoom-in-up"
+                data-aos-duration="1000"
+                className="w-[95%] md:w-[90%] mx-auto my-16 ">
                 <h1 className="heading" >Meet our founding members</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {
-                        foundingMembers?.map(member => <div key={member.id} className="section-grant p-4 flex items-start justify-start gap-4 " >
+                        foundingMembers?.map(member => <div key={member.id}
+                            data-aos="zoom-in-up"
+                            data-aos-duration="1000"
+                            className="section-grant p-4 flex items-start justify-start gap-4 " >
                             <div className="border rounded-full w-[4rem] h-[4rem] ">
                                 <img src={member.photo} alt={member.name} className="w-full h-full rounded-full" />
                             </div>
@@ -107,7 +115,10 @@ const AboutUsPage = () => {
                 </div>
             </section>
 
-            <section className="pt-12 my-16">
+            <section
+                data-aos="zoom-out"
+                data-aos-duration="1000"
+                className="pt-12 my-16">
                 <div>
                     <img src={aboutBanner} alt="banner image" />
                 </div>
@@ -117,20 +128,7 @@ const AboutUsPage = () => {
                 <SimilarProducts />
             </section>
 
-            <section className="p-4 flex flex-col md:flex-row items-center justify-between gap-x-10 gap-y-4 border- w-[95%] md:w-[90%] mx-auto ">
-                <div className="border2 flex-1 ">
-                    <img src={emailSubs} alt="email subscription alarm" className="w-full h-full" />
-                </div>
-                <div className="flex-1">
-                    <h1 className="font-semibold text-xl" >Subscribe & Elevate Your Style</h1>
-                    <p className="text-sm mt-2 mb-4 ">Subscribe and stay connected with updates on premium products and luxury finds—right at your fingertips!</p>
-
-                    <form className="flex flex-col gap-4 ">
-                        <input type="email" required placeholder="e.g. dev.m.ar.anas@gmail.com" className="text-input" defaultValue={user?.email} />
-                        <button type="submit" className="primary-btn md:w-fit " >Subscribe</button>
-                    </form>
-                </div>
-            </section>
+            <NewsLetterSubscription />
         </div>
     )
 }
