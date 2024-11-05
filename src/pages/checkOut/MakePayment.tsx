@@ -149,9 +149,10 @@ const MakePayment = () => {
     const total = location.state?.total
     const [clientSecret, setClientSecret] = useState("");
 
+
     useEffect(() => {
         // Fetch the clientSecret from the server
-        fetch("http://localhost:3001/api/v1/payment/create", {
+        fetch(`${import.meta.env.VITE_SERVER_URL}/payment/create`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
