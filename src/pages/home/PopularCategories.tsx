@@ -43,12 +43,12 @@ const allCategories = [
 
 const PopularCategories = () => {
     return (
-        <div>
+        <>
             <h1 className="heading">Top Categories</h1>
-            <div className="px-2 w-full md:w-[80%] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
                 {
                     allCategories?.map((category, index) => <Link key={index} to={category.route} className="group  " >
-                        <div className="w-2/3 mx-auto ">
+                        <div className="w2/3 mx-auto ">
                             <img
                                 loading="lazy"
                                 src={category.image}
@@ -59,7 +59,7 @@ const PopularCategories = () => {
                     </Link>)
                 }
             </div>
-        </div>
+        </>
     )
 }
 

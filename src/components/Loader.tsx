@@ -1,17 +1,34 @@
 function Loader() {
-  return (
-    // <section className="loader h-[100vh] w-full flex items-center justify-center ">
-    //   <div className="animate-[loading-animation_0.5s_linear_infinite] h-[4rem] w-[4rem] rounded-full border-t-8 border-l-8 border-myBlue ">
-    //   </div>
-    // </section>
+  const messages = [
+    "Almost there… get ready!",
+    "Hang tight, greatness incoming!",
+    "The wait is worth it!",
+    "Something awesome is brewing!",
+    "Just a sec… big things ahead!",
+    "Loading brilliance… one moment!",
+    "Patience, it’s almost showtime!",
+    "Hold tight, the fun’s loading!",
+    "On it's way… stay with us!",
+    "It’s coming… stay excited!",
+    "Preparing something epic… wait for it!",
+    "Just a moment… something amazing!",
+    "Good things in the works!",
+    "Almost done… the magic’s near!"
+  ];
 
-    <section>
-      <div className="min-h-screen flex flex-col items-center justify-center" >
-        <div className="animate-spin h-8 w-8 border-4 border-dotted border-myBlue border-t-transparent rounded-full mr-2"></div>
-       <p>Checking authentication</p>
-      </div>
-    </section>
-  )
+  // Get a random message
+  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+
+  return (
+    <div>
+      <section>
+        <div className="min-h-screen flex flex-col items-center justify-center">
+          <div className="animate-spin h-10 w-10 border-8 border-dotted border-myBlue border-t-transparent rounded-full mr-2"></div>
+          <p className="font-semibold px-4 mt-3 ">{randomMessage}</p>
+        </div>
+      </section>
+    </div>
+  );
 }
 
-export default Loader
+export default Loader;

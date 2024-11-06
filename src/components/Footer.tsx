@@ -81,7 +81,7 @@ const Footer = () => {
         <div id="download-app" className="w-full lg:w-[20%] fle flex-row md:flex-col ">
           <h1 className="font-bold text-xl mb-5 ">Download App</h1>
           
-          <div className="flex flex-row md:flex-col justify-between gap-4 w-full">
+          <div className="flex flex-row lg:flex-col justify-between gap-4 w-full">
             <div className="flex items-center justify-center gap-6 bg-gray-700 border py-2 px-3 rounded-md w-full md:w-fit cursor-pointer hover:bg-gray-800 duration-300 ">
               <div className="w-[2rem] mx-aut ">
                 <img src={ios} alt="android app" className="w-full h-full rounded-md " />

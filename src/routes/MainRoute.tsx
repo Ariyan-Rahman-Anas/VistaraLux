@@ -101,8 +101,14 @@ const MainRoute = createBrowserRouter([
                     <CheckOutPage />
                 </ProtectedRoute>
             },
-            { path: "/make-payment", element: <MakePayment /> },
-            { path: "/payment-success", element: <PaymentSuccessfulPage /> },
+            {
+                path: "/make-payment", element: <ProtectedRoute>
+                    <MakePayment />
+            </ProtectedRoute> },
+            {
+                path: "/payment-success", element: <ProtectedRoute>
+                    <PaymentSuccessfulPage />
+            </ProtectedRoute> },
             { path: "/payment-failed", element: <PaymentFailedPage /> },
         ],
     },

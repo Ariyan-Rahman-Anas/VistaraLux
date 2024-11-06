@@ -2,8 +2,12 @@ import { useState } from "react"
 import { useCategoriesQuery, useSearchProductsQuery } from "../../redux/api/productApi"
 import ProductCard from "../../components/ProductCard"
 import { X } from "lucide-react"
+import { useLocation } from "react-router-dom"
 
 const ProductsPage = () => {
+
+    const location = useLocation()
+    const targetedCategory = location.state?.category
 
     const { data: categoryData } = useCategoriesQuery("")
 
@@ -11,7 +15,7 @@ const ProductsPage = () => {
     const [sort, setSort] = useState("")
     const [minPrice, setMinPrice] = useState(1)
     const [maxPrice, setMaxPrice] = useState(1000000)
-    const [category, setCategory] = useState("")
+    const [category, setCategory] = useState(targetedCategory ? targetedCategory : "")
     const [page, setPage] = useState(1)
 
     const {
@@ -62,8 +66,8 @@ const ProductsPage = () => {
                     <select
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
-                        className="border py-2 px-4 outline-none rounded-md hover:bg-gray-200 ">
-                        <option value="" >All</option>
+                        className="py-2 px-4 outline-none rounded-md border dark:bg-gray-900  hover:bg-gray-200 ">
+                        <option value="" className="" >All</option>
                         {
                             categoryData && categoryData?.categories?.map((category, index) => <option key={index} value={category} className="capitalize" >{category}</option>)
                         }
@@ -83,7 +87,7 @@ const ProductsPage = () => {
                                 onChange={handleMinPriceChange}
                                 min={0}
                                 max={maxPrice}
-                                className="border p-2 focus:outline-none rounded-md w-full"
+                                className="border dark:bg-transparent p-2 focus:outline-none rounded-md w-full hover:bg-gray-200"
                             />
                         </div>
 
@@ -98,14 +102,14 @@ const ProductsPage = () => {
                                 onChange={handleMaxPriceChange}
                                 min={minPrice}
                                 max={1000000}
-                                className=" border p-2 focus:outline-none rounded-md w-full"
+                                className=" border dark:bg-transparent p-2 focus:outline-none rounded-md w-full hover:bg-gray-200"
                             />
                         </div>
                     </div>
                     {/* ... */}
                 </div>
             </aside>
-            <main className="sectiongrant col-span-8 md:col-span-6 p-4 ">
+            <main className="col-span-8 md:col-span-6 p-4 ">
                 {/* ..... */}
                 <div className="flex items-center justify-between flex-col md:flex-row gap-4">
                     <div className="flex flex-col gap-1 w-full relative">
@@ -115,7 +119,7 @@ const ProductsPage = () => {
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                             placeholder="Search by product name"
-                            className="border py-2 px-3 focus:outline-none rounded-md w-full"
+                            className="border dark:bg-transparent hover:bg-gray-200 py-2 px-3 focus:outline-none rounded-md w-full"
                         />
 
                         {/* X Icon - Shows only when search input has text */}
@@ -123,18 +127,18 @@ const ProductsPage = () => {
                             <X
                                 size={20}
                                 onClick={() => setSearch('')} // Clears the search input on click
-                                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 p-0.5 cursor-pointer hover:text-white hover:bg-myRed rounded-full duration-300 opacity-100"
+                                className="absolute right-2 bottom-1.5 transform -translate-y-1/2 p-0.5 cursor-pointer text-white hover:bg-myRed rounded-full duration-300 opacity-100"
                             />
                         )}
                     </div>
 
-                    <div className="flex items-end gap-4">
+                    <div className="flex items-end w-full md:w-fit gap-4">
                         <div className="flex flex-col gap-1 w-full">
                             <label className="text-sm font-medium">Sort</label>
                             <select
                                 value={sort}
                                 onChange={(e) => setSort(e.target.value)}
-                                className="border py-2 px-4 outline-none rounded-md hover:bg-gray-200"
+                                className="border py-2 px-4 outline-none rounded-md dark:bg-gray-900 hover:bg-gray-200"
                             >
                                 <option value="">Default</option>
                                 <option value="asc">Price: Low to High</option>

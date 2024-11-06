@@ -50,7 +50,7 @@ const SimilarProducts = () => {
     };
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full md:w-[90%] mx-auto ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div id="flash-sale-today" >
                 <h1 className="text-xl font-semibold mb-3">Flash Sale Today</h1>
                 <div className="space-y-4">

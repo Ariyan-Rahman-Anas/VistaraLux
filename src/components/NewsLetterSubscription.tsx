@@ -41,7 +41,7 @@ const NewsLetterSubscription = () => {
 
 
     return (
-        <div className="p-4 flex flex-col md:flex-row items-center justify-between gap-x-10 gap-y-4 border- w-[95%] md:w-[90%] mx-auto ">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-x-10 gap-y-4 ">
             <div
                 data-aos="fade-right"
                 data-aos-duration="1000"
