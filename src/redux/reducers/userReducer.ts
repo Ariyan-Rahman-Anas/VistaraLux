@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserReducerInitialState } from "../../types/reducer-types";
 import { User } from "../../types/types";
-import { RootState } from "@reduxjs/toolkit/query";
+import { RootState } from "../store";
+// import { RootState } from "@reduxjs/toolkit/query";
 
 const initialState: UserReducerInitialState = {
     isAuthenticated: false,
@@ -31,4 +32,4 @@ export default userSlice.reducer;
 
 
 // Selector for authenticated user
-export const selectAuthenticatedUser = (state: RootState) => state.user.user;
+export const selectAuthenticatedUser = (state: RootState) => state.user.user?.user;

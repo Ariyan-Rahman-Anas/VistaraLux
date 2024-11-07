@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useCategoriesQuery, useSearchProductsQuery } from "../../redux/api/productApi"
+import { useSearchProductsQuery } from "../../redux/api/productApi"
 import ProductCard from "../../components/ProductCard"
 import freshGroceries from "./../../assets/images/ads/fresh-groceries.svg"
 import { Link } from "react-router-dom"
@@ -12,10 +12,6 @@ const FreshGroceries = () => {
     const [maxPrice, setMaxPrice] = useState(1000000)
     const [category, setCategory] = useState("")
     const [page, setPage] = useState(1)
-
-    const { data: freshGroceriesData } = useCategoriesQuery("")
-
-    console.log("freshGroceriesData", freshGroceriesData)
 
     const {
         data: searchData,
@@ -31,8 +27,6 @@ const FreshGroceries = () => {
         minPrice,
         maxPrice
     })
-
-    console.log("searchData", searchData)
 
   return (
       <div>

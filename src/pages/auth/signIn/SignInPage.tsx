@@ -46,7 +46,7 @@ export default function SignInPage() {
         }
 
         if (isSuccess) {
-            dispatch(userExist(data?.user));
+            dispatch(userExist(data));
             toast.success(data?.message, { duration: 3000 });
             navigate("/");
         }

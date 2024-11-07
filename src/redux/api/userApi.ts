@@ -1,13 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { MessageResponse, UsersResponse } from "../../types/api-types";
 import { User } from "../../types/types";
+import baseQueryWithReAuth from "../baseQueryWithAuth";
 
 export const userApi = createApi({
     reducerPath: "userApi",
-    baseQuery: fetchBaseQuery({
-        baseUrl: `${import.meta.env.VITE_SERVER_URL}/user`, 
-        credentials: "include",
-    }),
+    // baseQuery: fetchBaseQuery({
+    //     baseUrl: `${import.meta.env.VITE_SERVER_URL}/user`, 
+    //     credentials: "include",
+    // }),
+    baseQuery: baseQueryWithReAuth ,
     tagTypes: ["user"],
     endpoints: (builder) => ({
         signUp: builder.mutation<MessageResponse, User>({

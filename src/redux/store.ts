@@ -10,31 +10,31 @@ import { dashboardApi } from "./api/dashboardApi";
 import { wishlistApi } from "./api/wishlistApi";
 import { subscriptionApi } from "./api/subscriptionApi";
 
-
-export const serverUrl = import.meta.env.VITE_SERVER_URL
-
-
-// Persist config for Redux-Persist
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: ["user", "cart", "theme"],  // Specify which reducers you want to persist
+    whitelist: ["user", "cart", "theme"],
 };
 
-// Create a persisted reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// Configure the store
 export const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
-            serializableCheck: false,  // Disable serializable check for redux-persist
-        }).concat([loggerMiddleware, userApi.middleware, productApi.middleware, orderApi.middleware, wishlistApi.middleware,   dashboardApi.middleware, subscriptionApi.middleware ]),  // Add RTK Query middlewares
-    devTools: process.env.NODE_ENV !== "production",  // Enable Redux DevTools in development
+            serializableCheck: false, 
+        }).concat([
+            loggerMiddleware,
+            userApi.middleware,
+            productApi.middleware,
+            orderApi.middleware,
+            wishlistApi.middleware,
+            dashboardApi.middleware,
+            subscriptionApi.middleware
+        ]),
+    devTools: process.env.NODE_ENV !== "production",
 });
 
-// Create a persistor
 export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
