@@ -11,7 +11,9 @@ interface Props {
 }
 
 const ProtectedRoute = ({ children, redirectTo = "/sign-in", requiredRole, isPublic = false }: Props) => {
-    const { user, isAuthenticated } = useSelector((state) => state.user);
+    // const { user, isAuthenticated } = useSelector((state) => state?.user?.user);
+    const user = useSelector((state) => state?.user?.user?.user);
+    const isAuthenticated = useSelector((state) => state?.user?.isAuthenticated);
     const navigate = useNavigate();
 
     useEffect(() => {
