@@ -58,8 +58,8 @@ const AboutUsPage = () => {
     ]
 
     return (
-        <div>
-            <section className="w-[95%] lg:w-[90%] mx-auto py-10 flex flex-col-reverse md:flex-row items-start justify-between gap-6 ">
+        <div className="w-[95%] lg:w-[90%] mx-auto">
+            <section className=" py-10 flex flex-col-reverse md:flex-row items-start justify-between gap-6 ">
                 <div
                     data-aos="fade-right"
                     data-aos-duration="1000"
@@ -95,7 +95,7 @@ const AboutUsPage = () => {
             <section
                 data-aos="zoom-in-up"
                 data-aos-duration="1000"
-                className="w-[95%] md:w-[90%] mx-auto my-16 ">
+                className="my-16 ">
                 <h1 className="heading" >Meet our founding members</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {
@@ -118,9 +118,9 @@ const AboutUsPage = () => {
             <section
                 data-aos="zoom-out"
                 data-aos-duration="1000"
-                className="pt-12 my-16">
+                className="my-20 rounded-md  shadow hover:shadow-md duration-300 ">
                 <div>
-                    <img src={aboutBanner} alt="banner image" />
+                    <img src={aboutBanner} alt="banner image" className="w-full h-full rounded-md dark:bg-gray-200 " />
                 </div>
             </section>
 

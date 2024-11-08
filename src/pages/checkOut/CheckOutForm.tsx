@@ -10,12 +10,12 @@ const CheckOutForm = () => {
     const location = useLocation();
     const user = useSelector(selectAuthenticatedUser)
 
-    const cartItems = location.state.cartItems;
-    const tax = location.state.tax;
-    const shippingCharge = location.state.shippingCharge;
-    const discount = location.state.discount;
-    const subtotal = location.state.total;
-    const finalTotal = location.state.finalTotal;
+    const cartItems = location?.state?.cartItems;
+    const tax = location.state?.tax;
+    const shippingCharge = location.state?.shippingCharge;
+    const discount = location.state?.discount;
+    const subtotal = location.state?.total;
+    const finalTotal = location.state?.finalTotal;
 
     const {
         register,
@@ -275,15 +275,15 @@ const CheckOutForm = () => {
                     </div>
                     <div className="flex items-center justify-between">
                         <p>Tax</p>
-                        <p className="font-semibold">{tax.toFixed(2)}.00</p>
+                        <p className="font-semibold">{tax?.toFixed(2)}.00</p>
                     </div>
                     <div className="flex items-center justify-between">
                         <p>Shipping</p>
-                        <p className="font-semibold">{shippingCharge.toFixed(2)}.00</p>
+                        <p className="font-semibold">{shippingCharge?.toFixed(2)}.00</p>
                     </div>
                     <div className="flex items-center justify-between">
                         <p>Discount</p>
-                        <p className="font-semibold">{discount.toFixed(2)}.00</p>
+                        <p className="font-semibold">{discount?.toFixed(2)}.00</p>
                     </div>
                     <hr className="hr mt-3 " />
                     <div className="flex items-center justify-between font-semibold ">

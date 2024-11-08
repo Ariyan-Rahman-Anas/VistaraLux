@@ -60,7 +60,7 @@ const ModularTableWithSkeleton = <T extends Object>({
     return (
         <div className={containerClassName}>
             <table className="table border-collapse w-full h-full" {...getTableProps()}>
-                <thead className="bg-gray-200 rounded-md">
+                <thead className="bg-gray-200 dark:bg-gray-500 rounded-md">
                     {headerGroups.map((headerGroup, index) => (
                         <tr {...headerGroup.getHeaderGroupProps()} key={index}>
                             {headerGroup.headers.map((column) => (
@@ -96,7 +96,7 @@ const ModularTableWithSkeleton = <T extends Object>({
                         page.map((row) => {
                             prepareRow(row);
                             return (
-                                <tr {...row.getRowProps()} key={row.id} className="border-b hover:bg-blue-200 duration-300">
+                                <tr {...row.getRowProps()} key={row.id} className="border-b hover:bg-blue-200 dark:hover:bg-myBlue duration-300">
                                     {row.cells.map((cell) => (
                                         <td {...cell.getCellProps()} key={cell.column.id} className="p-4">
                                             {cell.render("Cell")}

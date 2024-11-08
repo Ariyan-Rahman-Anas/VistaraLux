@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
-import logo from "./../assets/logos/blue-white.svg"
-import android from "./../assets/app/android.svg"
-import ios from "./../assets/app/ios.svg"
+import logo from "./../assets/images/logos/1.svg"
+import android from "./../assets/images/app/android.svg"
+import ios from "./../assets/images/app/ios.svg"
 
 
 const Footer = () => {
@@ -34,10 +34,9 @@ const Footer = () => {
       <div className="px-4 md:px-8 pt-16 pb-8 flex flex-col lg:flex-row gap-10 ">
         <div id="support" className="space-y-4 w-full lg:w-[40%] " >
           <Link to={"/"} className="flex items-center justify-start gap-2">
-            <div className="w-[5rem] ">
+            <div className="w-full md:w-[20rem] border-0">
               <img src={logo} alt="vistaraLux's logo" className="w-full h-full" />
             </div>
-            <p className="font-semibold text-2xl italic">VistaraLux</p>
           </Link>
           <div>
             <p className="text-gray-400">Any questions? Feel free to call us:</p>

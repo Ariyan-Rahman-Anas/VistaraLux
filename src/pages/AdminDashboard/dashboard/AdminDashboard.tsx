@@ -5,13 +5,18 @@ import DashboardTable from "../../../components/adminDashboard/DashboardTable"
 import { useStatsQuery } from "../../../redux/api/dashboardApi"
 import { SkeletonWidgetItem } from "../../../components/adminDashboard/adminDashboardSkeletons/SkeletonWidgetItem "
 import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { selectAuthenticatedUser } from "../../../redux/reducers/userReducer"
 
 function AdminDashboard() {
 
     const { data, isLoading, isError, error } = useStatsQuery("")
-    const stats = data?.adminDashboardStats 
+    const stats = data?.adminDashboardStats
     console.log("Res", stats?.auditPercentages)
-    
+
+    const user = useSelector(selectAuthenticatedUser)
+    console.log("user", user)
+
     return (
         <div className="dashboard-container " >
             <main >
@@ -23,11 +28,14 @@ function AdminDashboard() {
                     <div className="flex items-center gap-4 ">
                         <Bell />
                         <Link to={"/user/profile"}>
-                            <UserRound />
+                            {
+                                user?.photo[0]?.url
+                                ? <div className="h-8 w-8">
+                                    <img src={user?.photo[0]?.url} alt="user icon" className="h-8 w-8 rounded-full" />
+                                    </div>
+                                : <UserRound />
+                            }
                         </Link>
-                        {/* <div className="h-8 w-8">
-                            <img src="https://icon-library.com/images/account-icon-png/account-icon-png-10.jpg" alt="user icon" className="h-full w-full" />
-                        </div> */}
                     </div>
                 </section>
                 <hr className="hr" />
@@ -56,13 +64,13 @@ function AdminDashboard() {
                         <h2 className="heading">Inventory</h2>
                         <div>
                             {stats?.categoryCount?.map((item, index) => {
-                                const [heading, value ] = Object.entries(item)[0]
+                                const [heading, value] = Object.entries(item)[0]
                                 return (
                                     <CategoryItem
                                         key={index}
                                         heading={heading}
                                         value={value}
-                                        color={`hsl(${value * 4}, ${value}%,50%)`} 
+                                        color={`hsl(${value * 4}, ${value}%,50%)`}
                                     />
                                 )
                             })}
@@ -70,14 +78,14 @@ function AdminDashboard() {
                     </div>
                 </section>
 
-                <section id="transaction-section" className="my-4 gap-4 flex overflow-auto ">
+                <section id="transaction-section" className="my-4 gap-4 flex flex-col md:flex-row overflow-auto ">
                     <div className="gender-chart p-2 relative section-grant flex-1 ">
                         <h2 className="heading">Gender Ratio</h2>
                         <DoughnutChart
                             labels={["Female", "Male"]}
                             data={[stats?.userRatio.female, stats?.userRatio.male]}
                             bgColor={["hsl(340,82%, 56%)", "rgba(53,162,235,0.8)"]}
-                            cutout={100}
+                            cutout={150}
                         />
                         <img src={maleFemaleIcon} alt="male female icon" className="absolute top-[50%] left-[45%] translate-[-50%, 50%] h-[2.5rem] w-[2.5rem] " />
                     </div>
@@ -126,7 +134,7 @@ const WidgetItem = ({ heading, value, percent, color, amount = false }: WidgetIt
             <div className="relative h-[5rem] w-[5rem] rounded-full grid place-items-center bg-green-500 flex-none" style={{
                 background: `conic-gradient(${color} ${Math.abs(percent) / 100 * 360}deg, rgb(255,255,255)0)`
             }}>
-                <div className="absolute w-16 h-16 bg-white rounded-full"></div>
+                <div className="absolute w-16 h-16 bg-white dark:bg-gray-800 rounded-full"></div>
                 <span color={color} className="relative">
                     {percent > 0 && `${percent > 10000 ? 9999 : percent}%`}
                     {percent < 0 && `${percent < -10000 ? -9999 : percent}%`}
@@ -145,7 +153,7 @@ interface CategoryItem {
 }
 const CategoryItem = ({ color, value, heading }: CategoryItem) =>
     <div className="category-item flex flex-col lg:flex-row items-center justify-between gap-1 lg:gap-4 my-3 lg:my-6 ">
-        <h5 className="text-gray-700 text-sm capitalize ">{heading}</h5>
+        <h5 className="text-gray-700 dark:text-white text-sm capitalize ">{heading}</h5>
         <div className="w-[6rem] bg-gray-300 rounded-md h-[.5rem] flex-none ">
             <div style={{
                 backgroundColor: color,

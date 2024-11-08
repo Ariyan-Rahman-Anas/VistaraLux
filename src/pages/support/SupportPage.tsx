@@ -85,7 +85,7 @@ const SupportPage = () => {
             todaySupports?.map((support, index) => <div key={index}
               data-aos="zoom-in-up"
               data-aos-duration="1000"
-              className="shadow hover:shadow-md rounded-md p-4 flex items-center gap-4 hover:bg-gray-200 duration-300 ">
+              className="section-grant p-4 flex items-center gap-4 ">
               <p>{support.icon} </p>
               <p className="font-semibold">{support.title} </p>
             </div> )

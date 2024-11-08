@@ -2,7 +2,7 @@ import orderSuccess from "./../../assets/images/order-success.svg"
 
 const PaymentSuccessfulPage = () => {
   return (
-    <div className="w-[95%] md:w-[90%] mx-auto my-8 flex flex-col md:flex-row-reverse items-center justify-between gap-6  ">
+    <div className="w-[95%] md:w-[90%] mx-auto my-8 flex flex-col md:flex-row items-center justify-between gap-6  ">
       <div
         data-aos="fade-right"
         data-aos-duration="1000"

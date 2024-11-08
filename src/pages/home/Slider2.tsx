@@ -41,7 +41,7 @@ const Slider2 = () => {
     };
 
     return (
-        <div className="relative w-full md:h-[77vh] sm:h-[40vh] overflow-hidden  border-gray-300 rounded-lg">
+        <div className=" relative w-ful w-fit md:h-[77vh] sm:h[40vh] overflow-hidden  border-gray-300 rounded-lg">
             <div
                 ref={sliderRef}
                 className={`flex ${window.innerWidth >= 768 ? "flex-col h-full" : "flex-row w-full"

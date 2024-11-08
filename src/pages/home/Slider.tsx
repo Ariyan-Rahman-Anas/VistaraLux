@@ -98,7 +98,7 @@ const Slider = ({ controllerBtn }) => {
             </div>
 
             {
-                controllerBtn && <div className='absolute bottom-0 flex flex-row items-center justify-end gap-10 w-full p-2'>
+                controllerBtn && <div className='absolute bottom-0 flex flex-row items-center justify-end gap-10 w-full pr-2'>
                     {/* Prev/Next Controls */}
                     <button
                         className="h-8 w-8 text-white text-lg font-semibold bg-primary shadow-md shadow-black/50 rounded-full hover:opacity-100"

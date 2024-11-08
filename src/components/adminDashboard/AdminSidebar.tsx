@@ -82,7 +82,7 @@ function AdminSidebar() {
     const location = useLocation()
 
     return (
-        <div className="aside w-full md:w-[20%] p-4 bg-white h-screen overflow-y-auto ">
+        <div className="aside w-full md:w-[20%] p-4 bg-white dark:bg-gray-700  h-screen overflow-y-auto ">
             <aside
                 className="space-y-5"
             >
