@@ -1,4 +1,4 @@
-import Slider from "./Slider"
+import BannerSlider from "./BannerSlider"
 
 
 import i1 from "./../../assets/images/banner/1.jpg"
@@ -48,7 +48,7 @@ const HeroSection = () => {
         <div className="w-[95%] md:w-[90%] mx-auto grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 mt-2 md:mt-6  ">
 
             <div className="w-full h-full md:w[65%] rounded-md col-span-8 md:col-span-8">
-                <Slider controllerBtn={true} />
+                <BannerSlider controllerBtn={true} />
             </div>
 
             <div className="w-full flex flex-row md:flex-col gap-2 md:gap-4 col-span-8 md:col-span-4 overflow-hidden ">

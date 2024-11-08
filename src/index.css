@@ -29,7 +29,7 @@ overflow-x: hidden;
   @apply w-full md:w-[77%] h-screen overflow-y-auto pr-4 pb-4
 }
 .heading{
-    @apply tracking-widest mt-7 mb-10 text-black/60 dark:text-white text-2xl text-center uppercase
+    @apply tracking-wider text-myBlue dark:text-white text-3xl mb-4 
 }
 .heading-down{
     @apply text-center mt-6 text-xl font-light opacity-80 tracking-widest

@@ -4,8 +4,6 @@ import baby from "./../../assets/images/categories/baby.webp"
 import mens from "./../../assets/images/categories/mens.webp"
 import womens from "./../../assets/images/categories/womens.webp"
 import groceries from "./../../assets/images/categories/groceries.webp"
-import footWear from "./../../assets/images/categories/footWear.webp"
-import watches from "./../../assets/images/categories/watches.webp"
 import { Link } from "react-router-dom"
 
 const allCategories = [
@@ -43,7 +41,7 @@ const allCategories = [
 
 const PopularCategories = () => {
     return (
-        <>
+        <div>
             <h1 className="heading">Top Categories</h1>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
                 {
@@ -59,8 +57,7 @@ const PopularCategories = () => {
                     </Link>)
                 }
             </div>
-        </>
+        </div>
     )
 }
-
 export default PopularCategories

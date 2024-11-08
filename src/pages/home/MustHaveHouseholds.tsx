@@ -63,7 +63,7 @@ const MustHaveHouseholds = () => {
 
               <div className="flex items-center justify-between font-semibold my-3">
                   <h1 className="text-2xl">Home Appliances</h1>
-                  <Link to={"/products"} state={{ category: "groceries" }} className="text-myBlue animate-pulse ">See more →</Link>
+                  <Link to={"/products"} state={{ category: "household" }} className="text-myBlue animate-pulse ">See more →</Link>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
