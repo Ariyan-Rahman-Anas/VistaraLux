@@ -3,9 +3,10 @@ import { useCategoriesQuery, useSearchProductsQuery } from "../../redux/api/prod
 import ProductCard from "../../components/ProductCard"
 import { X } from "lucide-react"
 import { useLocation } from "react-router-dom"
+import usePageTitle from "../../customHooks/usePageTitle"
 
 const ProductsPage = () => {
-
+    usePageTitle("Products")
     const location = useLocation()
     const targetedCategory = location.state?.category
 
@@ -151,7 +152,7 @@ const ProductsPage = () => {
 
                 {/* ..... */}
 
-                <div className="my-8 grid grid-cols-1 md:grid-cols-3 place-items-center lg:gridcols-4 gap-6 ">
+                <div className="my-8 grid grid-cols-1 md:grid-cols-3 place-items-center gap-3">
                     {
                         searchProductsIsSuccess && searchData.products?.length >= 1 && searchData.products?.map(product => <ProductCard key={product._id} product={product} isLoading={searchProductsLoading} />)
                     }
@@ -165,32 +166,43 @@ const ProductsPage = () => {
                 </div>
 
                 <div>
-                    {
-                        searchData && searchData.totalPages > 1 && <>
-                            {searchData && searchData.totalPages && (
-                                <article className="flex items-center justify-center gap-4">
+                    {searchData && searchData.totalPages > 1 && (
+                        <article className="flex items-center justify-center gap-4">
+                            {/* Prev button */}
+                            <button
+                                disabled={page === 1}
+                                onClick={() => setPage((prev) => prev - 1)}
+                                className="primary-btn"
+                            >
+                                Prev
+                            </button>
+
+                            {/* Render individual page buttons */}
+                            {Array.from({ length: searchData.totalPages }, (_, index) => {
+                                const pageNumber = index + 1;
+                                return (
                                     <button
-                                        disabled={!isPrevPage}
-                                        onClick={() => setPage((prev) => prev - 1)}
-                                        className="primary-btn"
+                                        key={pageNumber}
+                                        onClick={() => setPage(pageNumber)}
+                                        className={page === pageNumber
+                                            ? "h-6 w-6 flex items-center justify-center rounded-full text-white bg-myBlue border border-myBlue dark:border-white "
+                                            : "h-6 w-6 flex items-center justify-center rounded-full text-myBlue dark:text-white border-[.1rem] border-myBlue dark:border-white "}
                                     >
-                                        Prev
+                                        {pageNumber}
                                     </button>
-                                    <span>
-                                        {page} of {searchData.totalPages}
-                                    </span>
-                                    <button
-                                        disabled={!isNextPage}
-                                        onClick={() => setPage((prev) => prev + 1)}
-                                        className="primary-btn"
-                                    >
-                                        Next
-                                    </button>
-                                </article>
-                            )}
-                        </>
-                    }
-                    
+                                );
+                            })}
+
+                            {/* Next button */}
+                            <button
+                                disabled={page === searchData.totalPages}
+                                onClick={() => setPage((prev) => prev + 1)}
+                                className="primary-btn"
+                            >
+                                Next
+                            </button>
+                        </article>
+                    )}
                 </div>
             </main>
         </div>

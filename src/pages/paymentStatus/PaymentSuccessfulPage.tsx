@@ -1,6 +1,8 @@
+import usePageTitle from "../../customHooks/usePageTitle";
 import orderSuccess from "./../../assets/images/order-success.svg"
 
 const PaymentSuccessfulPage = () => {
+  usePageTitle("Payment Success");
   return (
     <div className="w-[95%] md:w-[90%] mx-auto my-8 flex flex-col md:flex-row items-center justify-between gap-6  ">
       <div

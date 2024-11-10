@@ -3,8 +3,10 @@ import whoWeAre from "./../../assets/images/whoWeAre.svg"
 import aboutBanner from "./../../assets/images/aboutBanner.svg"
 import SimilarProducts from "../../components/SimilarProducts"
 import NewsLetterSubscription from "../../components/NewsLetterSubscription"
+import usePageTitle from "../../customHooks/usePageTitle"
 
 const AboutUsPage = () => {
+    usePageTitle("About us")
 
     const foundingMembers = [
         {

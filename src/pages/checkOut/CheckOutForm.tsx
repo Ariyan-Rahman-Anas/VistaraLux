@@ -89,6 +89,7 @@ const CheckOutForm = () => {
                                     type="text"
                                     placeholder="John Doe"
                                     className="text-input"
+                                defaultValue={user?.name}
                                     {...register("billingInfo.userId.name", { required: "Name is required" })}
                                 />
                                 {errors.billingInfo?.userId?.name && <span className="text-myRed font-semibold">{errors.billingInfo.userId?.name.message}</span>}
@@ -98,6 +99,8 @@ const CheckOutForm = () => {
                                 <input
                                     type="email"
                                     placeholder="example@doe.com"
+                                    defaultValue={user?.email}
+                                    readOnly
                                     className="text-input"
                                     {...register("billingInfo.userId.email", { required: "Email is required" })}
                                 />

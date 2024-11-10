@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCreateNewOrderMutation } from '../../redux/api/OrderApi';
 import { useDispatch } from 'react-redux';
 import { resetCart } from '../../redux/reducers/cartReducer';
+import usePageTitle from '../../customHooks/usePageTitle';
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
@@ -106,7 +107,7 @@ const CheckoutForm = () => {
                     <Link to={"/"} className='font-bold text-3xl text-myBlue italic ' >VistaraLux</Link>
                     <p className='mt-4 md:mt-8 font-semibold text-lg '>You're just one step away! </p>
                     <p>Complete your payment now to secure your order and enjoy a seamless shopping experience!</p>
-                    <p className='mt-3 font-semibold text-gray-600 '>Your payment amount</p>
+                    <p className='mt-3 font-semibold text-gray-600 dark:text-gray-300 '>Your payable amount</p>
                     <p className='text-5xl font-semibold ' >${total}.00</p>
                 </div>
                 <form onSubmit={handleSubmit} className='p-8 w-full md:w-[50%] section-grant flex flex-col  items-center justify-center'>
@@ -137,6 +138,7 @@ const CheckoutForm = () => {
 };
 
 const MakePayment = () => {
+    usePageTitle("Make Payment")
     const location = useLocation()
 
     const billingInfo = location.state?.billingInfo

@@ -8,10 +8,11 @@ import nullCover from "./../../../assets/images/profile/null-cover.svg"
 import { selectAuthenticatedUser } from "../../../redux/reducers/userReducer";
 import { Link } from "react-router-dom";
 import { Pen } from "lucide-react";
+import usePageTitle from "../../../customHooks/usePageTitle";
 
 
 const UserProfile = () => {
-
+  usePageTitle("Profile")
   const user = useSelector(selectAuthenticatedUser);
   const { name, photo, email, gender, role } = user || {} 
 

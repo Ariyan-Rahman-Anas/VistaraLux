@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { decrementQuantity, incrementQuantity, removeCartItem } from "../../redux/reducers/cartReducer";
 import ModularTableWithSkeleton from "../../components/adminDashboard/ModularTable";
 import EmptyMessage from "../../components/EmptyMessage";
+import usePageTitle from "../../customHooks/usePageTitle";
 
 interface DataType {
   _id: string;
@@ -19,6 +20,7 @@ interface DataType {
 }
 
 const ShoppingCartPage = () => {
+  usePageTitle("Shopping Cart");
   const dispatch = useDispatch();
   const [coupon, setCoupon] = useState<string>("");
   const [isDiscounted, setIsDiscounted] = useState<boolean>(false);
@@ -98,16 +100,16 @@ const ShoppingCartPage = () => {
   return (
     <>
       {cartItems?.length >= 1 ? (
-        <div className="w-full md:w-[90%] mx-auto spacey-20 pb-16 ">
+        <div className="w-full md:w-[90%] mx-auto spacey-20 pb-4 px-2">
           {/* coupon informer */}
-          <div className="my-10 bg-white w-fit mx-auto py-3 p-6 font-semibold tracking-wide shadow hover:shadow-md duration-500 rounded-full">
-            <div className="animate-pulse">
+          <div className="my-10 section-grant w-fit mx-auto p-4 font-semibold tracking-wide">
+            <div className="animate-pulse text-center">
               Apply coupon <span className="text-myBlue">"FirstCoupon1"</span> to get <span className="text-myBlue">14% discount</span> on your total payment
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
-            <main className="col-span-5 section-grant p-4 ">
+            <main className="col-span-7 md:col-span-5 section-grant p-4 ">
               <h1 className="heading">Cart Items</h1>
               <ModularTableWithSkeleton
                 columns={columns}
@@ -116,25 +118,25 @@ const ShoppingCartPage = () => {
                 showPagination={true} />
             </main>
 
-            <aside className="col-span-2 md:col-span-2 section-grant p-4 w-full">
+            <aside className="col-span-7 md:col-span-2 section-grant p-4 w-full">
               <h1 className="heading">Cart Total</h1>
               {/* payment calculating */}
-              <div className="text-sm text-gray-600 space-y-6 px-3">
+              <div className="text-sm text-gray-600 dark:text-gray-300 space-y-6 px-3">
                 <div className="flex items-center justify-between">
                   <p>Sub-total</p>
-                  <p className="font-semibold text-black">{total.toFixed(2)} Tk</p>
+                  <p className="font-semibold text-black dark:text-white">{total.toFixed(2)} Tk</p>
                 </div>
                 <div className="flex items-center justify-between">
                   <p>Discount (-14%)</p>
-                  <p className="font-semibold text-black">{discount.toFixed(2)} Tk</p>
+                  <p className="font-semibold text-black dark:text-white">{discount.toFixed(2)} Tk</p>
                 </div>
                 <div className="flex items-center justify-between">
                   <p>Shipping (+6%)</p>
-                  <p className="font-semibold text-black">{shippingCharge.toFixed(2)} Tk</p>
+                  <p className="font-semibold text-black dark:text-white">{shippingCharge.toFixed(2)} Tk</p>
                 </div>
                 <div className="flex items-center justify-between">
                   <p>Tax (+4%)</p>
-                  <p className="font-semibold text-black">{tax.toFixed(2)} Tk</p>
+                  <p className="font-semibold text-black dark:text-white">{tax.toFixed(2)} Tk</p>
                 </div>
               </div>
               <hr className="hr mt-5 mb-2" />
@@ -150,7 +152,7 @@ const ShoppingCartPage = () => {
                   className="text-input w-full"
                 />
                 <button disabled={isDiscounted} type="submit" className="primary-btn">
-                  Apply Coupon
+                  {isDiscounted ? "Coupon Applied" : "Apply Coupon"}
                 </button>
               </form>
 

@@ -6,9 +6,10 @@ import NewsLetterSubscription from "../../components/NewsLetterSubscription"
 import FreshGroceries from "./FreshGroceries"
 import MustHaveHouseholds from "./MustHaveHouseholds"
 import MansFashion from "./MansFashion"
+import usePageTitle from "../../customHooks/usePageTitle"
 
 const HomePage = () => {
-
+  usePageTitle('Home');
   return (
     <div>
       <HeroSection />

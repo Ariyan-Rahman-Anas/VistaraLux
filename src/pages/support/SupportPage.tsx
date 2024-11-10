@@ -1,9 +1,10 @@
 import { CircleCheck, CreditCard, FileQuestion, Mail, Phone, RefreshCcw, ShieldCheck, Store, Truck, UserRound } from "lucide-react"
 import support from "./../../assets/images/support.svg"
 import didNotFindAns from "./../../assets/images/didn'tFindAns.svg"
+import usePageTitle from "../../customHooks/usePageTitle"
 
 const SupportPage = () => {
-
+  usePageTitle("Customer Support")
   const todaySupports = [
     {
       title: "Track Order",

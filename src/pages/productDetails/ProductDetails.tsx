@@ -11,9 +11,10 @@ import { useAddToWishlistMutation, useAnUserWishlistQuery } from "../../redux/ap
 import { toast } from "sonner"
 import { useEffect } from "react"
 import { selectAuthenticatedUser } from "../../redux/reducers/userReducer"
+import usePageTitle from "../../customHooks/usePageTitle"
 
 const ProductDetails = () => {
-
+    usePageTitle('Product Details');
     const location = useLocation()
     const product = location?.state?.product
     const { name, category, brand, price, stock, photos, description, createdAt } = product || {}
@@ -85,19 +86,19 @@ const ProductDetails = () => {
                     className="product-info flex-1 space-y-6 ">
                     <div className="section-grant p-4 md:p-6 ">
                         <h1 className="text-4xl mb-4" >{name}</h1>
-                        <div className="flex items-start justify-between font-semibold text-gray-600 ">
+                        <div className="flex items-start justify-between font-semibold text-gray-600 dark:text-gray-300 ">
                             <div className="space-y-2">
-                                <p>Brand: <span className="text-black">{brand}</span> </p>
-                                <p>Category: <span className="capitalize text-black ">{category}</span> </p>
-                                <p>Release Date: <span className="capitalize text-black">{createdAt?.slice(0, 10)}</span> </p>
+                                <p>Brand: <span className="text-black dark:text-white">{brand}</span> </p>
+                                <p>Category: <span className="capitalize text-black dark:text-white">{category}</span> </p>
+                                <p>Release Date: <span className="capitalize text-black dark:text-white">{createdAt?.slice(0, 10)}</span> </p>
                             </div>
                             <div className="space-y-2">
                                 <p>Availability: <span className={`${stock <= 10 ? "text-myRed" : "text-green-500"}`} >{stock <= 10 ? "Low Stock" : "In Stock"}</span> </p>
-                                <p>Seller: <span className="capitalize text-black" >Seller's Name</span> </p>
+                                <p>Seller: <span className="capitalize text-black dark:text-white" >Seller's Name</span> </p>
                             </div>
                         </div>
                         <div className="flex items-center gap-6 my-7 ">
-                            <p className="text-3xl font-semibold text-myBlue">${price}</p>
+                            <p className="text-3xl font-semibold text-myBlue dark:text-white">${price}</p>
                             <p className="bg-primary text-white text-xl font-semibold py-2 px-5 rounded-md  " >0% OFF </p>
                         </div>
                         <p className="mt-2 mb-10 tracking-wide leading-6 " >{description?.slice(0, 200)}...read more</p>
@@ -138,7 +139,7 @@ const ProductDetails = () => {
                 <div className="flex items-start justify-between w-full lg:w-[60%] ">
                     <div className="w-full font-semibold ">
                         <h1 className="text-xl font-semibold mb-3" >Features</h1>
-                        <div className="space-y-4 text-gray-600">
+                        <div className="space-y-4 text-gray-600 dark:text-gray-300 ">
                             {features?.map((feature, index) => <div key={index} className="flex items-center gap-2">
                                 <CircleCheck color="blue" />
                                 <p>{feature}</p>
@@ -147,11 +148,11 @@ const ProductDetails = () => {
                     </div>
                     <div className="w-full">
                         <h1 className="text-xl font-semibold mb-3" >Shipping Information</h1>
-                        <div className="space-y-4 text-gray-600">
-                            <p><span className="font-semibold text-black " >Courier:</span> 2-4 days, free shipping</p>
-                            <p><span className="font-semibold text-black " >Local shipping:</span> upto one week, additional $19</p>
-                            <p><span className="font-semibold text-black " >Ups ground:</span>  6-7 days, free shipping</p>
-                            <p><span className="font-semibold text-black " >Ups fallback:</span> 10-12 days, $29</p>
+                        <div className="space-y-4 text-gray-600 dark:text-gray-300">
+                            <p><span className="font-semibold text-black dark:text-white" >Courier:</span> 2-4 days, free shipping</p>
+                            <p><span className="font-semibold text-black dark:text-white" >Local shipping:</span> upto one week, additional $19</p>
+                            <p><span className="font-semibold text-black dark:text-white" >Ups ground:</span>  6-7 days, free shipping</p>
+                            <p><span className="font-semibold text-black dark:text-white" >Ups fallback:</span> 10-12 days, $29</p>
                         </div>
                     </div>
                 </div>
