@@ -40,17 +40,21 @@ const Footer = () => {
           </Link>
           <div>
             <p className="text-gray-400">Any questions? Feel free to call us:</p>
-            <a href="tel:+8801610195968" className="text-lg font-medium hover:text-myRed duration-300" >+88 01610 195968</a>
+            {/* <a href="tel:+8801610195968" className="text-lg font-medium hover:text-myRed duration-300" >+88 01610 195968</a> */}
+            <a href="tel:+601124328929" className="text-lg font-medium hover:text-myRed duration-300" >+601124328929</a>
           </div>
 
           <div className="text-gray-400">
-            <p>Khulshi, East Nasirabad,</p>
-            <p>Khhulshi 4225, Chattogram, Bangladesh</p>
+            {/* <p>Khulshi, East Nasirabad,</p> */}
+            <p>SOUTH CITY PLAZA,</p>
+            {/* <p>Khhulshi 4225, Chattogram, Bangladesh</p> */}
+            <p>Seri kembangun , Selangor</p>
           </div>
 
           <div>
             <p className="text-gray-400">Any queries? Feel free to email us:</p>
-            <a href="mailto:dev.m.ar.anas@gmail.com" className="text-lg font-medium hover:text-myRed duration-300 ">dev.m.ar.anas@gmail.com</a>
+            {/* <a href="mailto:dev.m.ar.anas@gmail.com" className="text-lg font-medium hover:text-myRed duration-300 ">dev.m.ar.anas@gmail.com</a> */}
+            <a href="mailto:mdalamin200618@gmail.com" className="text-lg font-medium hover:text-myRed duration-300 ">vistaralux@info.com</a>
           </div>
         </div>
 
@@ -105,8 +109,8 @@ const Footer = () => {
       <hr className="mb-6 border-gray-500 " />
       <div className="flex flex-col md:flex-row items-center justify-center gap-3 pb-2 ">
         <p>All rights reserved by VistaraLux ©{fullYear} </p> 
-        <p className="hidden md:block">|</p>
-        <p>Developed by <Link to={"https://ariyanrahmananas.vercel.app"} target="_blank" className="hover:text-myRed duration-300" >Ariyan Rahman Anas</Link> </p>
+        {/* <p className="hidden md:block">|</p> */}
+        {/* <p>Developed by <Link to={"https://ariyanrahmananas.vercel.app"} target="_blank" className="hover:text-myRed duration-300" >Ariyan Rahman Anas</Link> </p> */}
       </div>   
     </footer>
   )

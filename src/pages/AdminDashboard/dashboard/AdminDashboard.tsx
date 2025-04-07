@@ -20,7 +20,7 @@ function AdminDashboard() {
     return (
         <div className="dashboard-container " >
             <main >
-                <section id="top-search-section" className="flex items-center  w-full py-2  ">
+                <section id="top-search-section" className="flex items-center w-full py-2">
                     <div className="flex items-center gap-2 w-full">
                         <Search />
                         <input type="text" placeholder="Search for data users, docs" className=" bg-inherit w-full p-1 outline-none  " />

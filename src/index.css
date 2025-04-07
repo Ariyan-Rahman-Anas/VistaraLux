@@ -26,7 +26,7 @@ overflow-x: hidden;
 
 
 .dashboard-container{
-  @apply w-full md:w-[77%] h-screen overflow-y-auto pr-4 pb-4
+  @apply w-full md:w-[77%] h-screen overflow-y-auto p-2 md:p-0 md:pr-4 pb-4
 }
 .heading{
     @apply tracking-wider text-myBlue dark:text-white text-3xl mb-4 
